@@ -1,3 +1,44 @@
 apiVersion: apps/v1
 kind: Deployment
-...
+metadata:
+  name: playground-backend
+  labels:
+    app: playground-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: playground-backend
+  template:
+    metadata:
+      labels:
+        app: playground-backend
+    spec:
+      containers:
+      - name: backend
+        image: gcr.io/duet01/playground-backend:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: alloydb-credentials
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playground-backend-svc
+spec:
+  selector:
+    app: playground-backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
