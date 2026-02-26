@@ -108,4 +108,13 @@ After using this playground, developers will understand:
 
 ---
 
-*This demo is part of the Google Antigravity demonstration ecosystem, showcasing the power of Cloud and AI collaboration.*
+## Local Development & Mock Mode
+The application supports a fully functional local development mode that does not require live GCP resources to test the UI and basic logic.
+
+- **Backend Mocking**: Setting `USE_MOCK_DB=true` in the backend `.env` enables dummy data responses for database-dependent endpoints.
+- **Frontend Interactivity**: The dashboard includes interactive navigation between sections (Dashboard, Cloud Run, GKE, Database Explorer), even in mock mode.
+- **Status Indicators**: The UI dynamically displays "Mock Mode" status badges when running locally to differentiate from production deployments.
+
+---
+
+*This demo is part of the Google Antigravity demonstration ecosystem, showcasing the power of Cloud and AI collaboration. Updated: 2026-02-26*
